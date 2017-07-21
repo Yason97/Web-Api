@@ -1,0 +1,32 @@
+﻿form{
+    background-color: #eaeaea;
+    max-width: 500px;
+    width: 90%;
+    position:relative;
+}
+.hidden{
+    display:none;
+}
+iframe {
+    width: 500px;
+}
+.required:after {
+    color: red;
+    content: "*";
+    margin-left: 2px;
+}
+.mb-5 {
+    margin-bottom: 5px !important;
+}
+.required-input {
+    border-color: red !important;
+    border: 1px solid red !important;
+}
+table {
+    max-width: 500px;
+    width: 90%;
+}
+th {
+    max-width: 125px;
+    width: 25%;
+}
