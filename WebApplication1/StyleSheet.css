@@ -7,9 +7,6 @@
 .hidden{
     display:none;
 }
-iframe {
-    width: 500px;
-}
 .required:after {
     color: red;
     content: "*";
