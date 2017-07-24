@@ -189,9 +189,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707201407354_TextLength50.cs" />
-    <Compile Include="Migrations\201707201407354_TextLength50.Designer.cs">
-      <DependentUpon>201707201407354_TextLength50.cs</DependentUpon>
+    <Compile Include="Maps\ProductsMap.cs" />
+    <Compile Include="Migrations\201707211337447_InitialMigration.cs" />
+    <Compile Include="Migrations\201707211337447_InitialMigration.Designer.cs">
+      <DependentUpon>201707211337447_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ProductContext.cs" />
@@ -276,8 +277,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707201407354_TextLength50.resx">
-      <DependentUpon>201707201407354_TextLength50.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201707211337447_InitialMigration.resx">
+      <DependentUpon>201707211337447_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

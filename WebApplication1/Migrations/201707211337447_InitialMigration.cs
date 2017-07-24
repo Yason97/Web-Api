@@ -3,7 +3,7 @@ namespace WebApplication1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class TextLength50 : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {

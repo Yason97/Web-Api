@@ -22,8 +22,10 @@
             type: method,
             data: product,
             success: function (item) {
-                productsTable.fadeOut('fast', function () {
-                    productsTable.empty().append(createTR(JSON.parse(item))).fadeIn();
+                productsTable.parent().fadeIn('fast', function () {
+                    productsTable.fadeOut('fast', function () {
+                        productsTable.empty().append(createTR(JSON.parse(item))).fadeIn();
+                    });
                 });
                 $('#result').text('');
                 disableEnableSubmitButtons(true);
@@ -43,8 +45,10 @@
         if (id !== '') {
             $.getJSON(uri + '/' + id)
                 .done(function (data) {
-                    productsTable.fadeOut('fast', function () {
-                        productsTable.empty().append(createTR(JSON.parse(data))).fadeIn();
+                    productsTable.parent().fadeIn('fast', function () {
+                        productsTable.fadeOut('fast', function () {
+                            productsTable.empty().append(createTR(JSON.parse(data))).fadeIn();
+                        });
                     });
                     $('#result').text('');
                     disableEnableSubmitButtons(true);
@@ -58,14 +62,14 @@
             $.getJSON(uri)
                 .done(function (data) {
                     var items = JSON.parse(data);
-                    var table = $('#result-table tbody');
-                    var t2 = productsTable;
-                    productsTable.fadeOut('fast', function () {
-                        productsTable.empty();
-                        for (var i = 0; i < items.length; i++) {
-                            productsTable.append(createTR(items[i]));
-                        }
-                        productsTable.fadeIn();
+                    var t2 = productsTable.parent().fadeIn('fast', function () {
+                        productsTable.fadeOut('fast', function () {
+                            productsTable.empty();
+                            for (var i = 0; i < items.length; i++) {
+                                productsTable.append(createTR(items[i]));
+                            }
+                            productsTable.fadeIn();
+                        });
                     });
                     $('#result').text('');
                     disableEnableSubmitButtons(true);

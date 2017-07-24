@@ -86,5 +86,5 @@ C:\Users\Admin\documents\visual studio 2017\Projects\WebApplication1\WebApplicat
 C:\Users\Admin\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\EntityFramework.xml
 C:\Users\Admin\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\EntityFramework.SqlServer.xml
 C:\Users\Admin\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\bin\ru\EntityFramework.resources.dll
-C:\Users\Admin\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.TextLength50.resources
+C:\Users\Admin\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\obj\Debug\WebApplication1.Migrations.InitialMigration.resources
 C:\Users\Admin\documents\visual studio 2017\Projects\WebApplication1\WebApplication1\obj\Debug\WebApplication1.csproj.GenerateResource.Cache

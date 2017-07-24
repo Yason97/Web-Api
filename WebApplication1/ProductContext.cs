@@ -4,6 +4,7 @@ namespace WebApplication1
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using WebApplication1.Maps;
 
     public partial class ProductContext : DbContext
     {
@@ -18,10 +19,7 @@ namespace WebApplication1
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Products>().HasKey(t => t.ID);
-            modelBuilder.Entity<Products>().Property(t => t.Name).IsRequired();
-            modelBuilder.Entity<Products>().Property(t => t.Name).HasMaxLength(30);
-            modelBuilder.Entity<Products>().Property(t => t.Category).HasMaxLength(30);      
+            modelBuilder.Configurations.Add(new ProductsMap());     
         }
     }
 }

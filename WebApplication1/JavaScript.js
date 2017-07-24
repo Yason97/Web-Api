@@ -4,8 +4,13 @@ var submitButtons, productsTable;
 $(document).ready(function () {
     submitButtons = $(":button").click(module.sendForm);
     productsTable = $('#result-table tbody');
-    $('#post-form').hide();
-    $('#put-form').hide();
+    renderForm($('#select-method').val());
+    $('body div form').keypress(function (event) {
+        var key = event.which || event.keyCode;
+        if (key == 13) {
+            module.sendForm();
+        }
+    });
 });
 
 function renderForm(value) {
@@ -45,9 +50,7 @@ function disableEnableSubmitButtons(enable) {
 }
 
 function clearAll() {
-    hide('post-form');
-    hide('put-form');
-    hide('get-form');
+    hide(['get-form', 'post-form', 'put-form']);
     inputs = $('input[type!="button"]').val('');
     for (var i = 0; i < inputs.length; i++)
         removeDangerBorder(inputs[i]);
@@ -55,4 +58,10 @@ function clearAll() {
 
 function hide(id) {
     $('#' + id).hide();
+}
+
+function hide(ids) {
+    for (var i = 0; i < ids.length; i++) {
+        $('#' + ids[i]).hide();
+    }
 }
