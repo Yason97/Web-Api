@@ -1,8 +1,10 @@
-﻿form{
+﻿
+form{
     background-color: #eaeaea;
-    max-width: 500px;
+    /*max-width: 500px;*/
     width: 90%;
     position:relative;
+    margin-top:10px;
 }
 .hidden{
     display:none;
@@ -19,18 +21,29 @@
     border-color: red !important;
     border: 1px solid red !important;
 }
-table {
-    max-width: 500px;
-    width: 90%;
-}
+
 th {
     max-width: 125px;
     width: 25%;
 }
-body div form{
+#data-forms-container form{
     display:none;
 }
 
 #result-table{
     display:none;
+}
+
+header div{
+    float:right;
+}
+.warning-message{
+    color:red;
+}
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.4;
+    color: gray !important;
+    text-decoration: none !important;
 }
