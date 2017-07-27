@@ -9,9 +9,10 @@ $(document).ready(function () {
     productsTable = $('#result-table tbody');
     $('a[data-locale=' + localStorage.getItem('locale') + ']').addClass('disabled');
     renderForm($('#select-method').val());
-    $('body div form').keypress(function (event) {
+    $('body div form').keypress(function (event) {       
         var key = event.which || event.keyCode;
         if (key == 13) {
+            event.preventDefault();
             module.sendForm();
         }
     });
@@ -25,28 +26,30 @@ $(document).ready(function () {
         $('.lang-switch').removeClass('disabled');
         $(this).addClass('disabled');
     });
+    window.onerror = function (msg, url, line, col, error) {
+        showToast('error', $.i18n(msg), $.i18n(error));
+    }
 });
 
 function renderForm(value) {
-    clearAll();
-    switch (value) {
-        case 'GET':
-            $('#get-form').show();
-            setFocus('get-form');
-            break;
-        case 'POST':
-            $('#post-form').show();
-            setFocus('post-form');
-            break;
-        case 'PUT':
-            $('#put-form').show();
-            setFocus('put-form');
-            break;
-        default:
-            //alert(value + ' not supported');
-            throw (value + ' not supported');          
-            break;
-    }
+        clearAll();
+        switch (value) {
+            case 'GET':
+                $('#get-form').show();
+                setFocus('get-form');
+                break;
+            case 'POST':
+                $('#post-form').show();
+                setFocus('post-form');
+                break;
+            case 'PUT':
+                $('#put-form').show();
+                setFocus('put-form');
+                break;
+            default:              
+                throw (value + ' not supported');
+                break;
+        }
 }
 
 function addRemoveWarning(data, add) {
@@ -115,20 +118,19 @@ function setFocus(id) {
 }
 
 function updateWarnings() {
-    switch ($('#select-method').val()) {
-        case 'POST':
-            checkForm('post-form');
-            break;
-        case 'PUT':
-            checkForm('put-form');
-            break;
-        case 'GET':
-
-            break;
-        default:
-            throw ($('#select-method').val() + ' not supported');
-            break;
-    }
+        switch ($('#select-method').val()) {
+            case 'POST':
+                checkForm('post-form');
+                break;
+            case 'PUT':
+                checkForm('put-form');
+                break;
+            case 'GET':
+                break;
+            default:
+                throw ($('#select-method').val() + ' not supported');
+                break;
+        }
 }
 
 function checkForm(formId) {
@@ -139,27 +141,24 @@ function checkForm(formId) {
         Category: module.findInForm(chekingForm, 'Category') ? module.findInForm(chekingForm, 'Category').value : '',
         Price: module.findInForm(chekingForm, 'Price') ? module.findInForm(chekingForm, 'Price').value : ''
     };
-    if (product.Price != '') {
-        if (!module.validPriceRegex.exec(product.Price)) {
-            addRemoveWarning({ element: module.findInForm(chekingForm, 'Price'), text: 'invalid_price'}, true );
-            isValid = false;
-        }
-        else {
-            addRemoveWarning({ element: module.findInForm(chekingForm, 'Price') }, false);
-        }
+    if (module.findInForm(chekingForm, 'Price').classList.contains('required-input')) {
+        addRemoveWarning({ element: module.findInForm(chekingForm, 'Price'), text: 'invalid_price' }, true);
+        isValid = false;
     }
     else {
         addRemoveWarning({ element: module.findInForm(chekingForm, 'Price') }, false);
     }
     if (formId == 'post-form') {
-        if (module.findInForm(chekingForm, 'Name').classList.contains('required-input'))
-            addRemoveWarning({ element: module.findInForm(chekingForm, 'Name'), text: 'empty_field'}, true);
+        if (module.findInForm(chekingForm, 'Name').classList.contains('required-input')) {
+            addRemoveWarning({ element: module.findInForm(chekingForm, 'Name'), text: 'empty_field' }, true);
             isValid = false;
+        }
     }
     if (formId == 'put-form') {
-        if (module.findInForm(chekingForm, 'Id').classList.contains('required-input'))
-            addRemoveWarning({element: module.findInForm(chekingForm, 'Id'),text: 'empty_field'}, true);
+        if (module.findInForm(chekingForm, 'Id').classList.contains('required-input')) {
+            addRemoveWarning({ element: module.findInForm(chekingForm, 'Id'), text: 'empty_field' }, true);
             isValid = false;
+        }
         if (isValid) {
             return product;
         }
@@ -167,4 +166,25 @@ function checkForm(formId) {
             return false;
         }
     }
+}
+
+function showToast(type, text, title) {
+    toastr.options = {
+        "closeButton": false,
+        "debug": false,
+        "newestOnTop": false,
+        "progressBar": false,
+        "positionClass": "toast-top-center",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "1000",
+        "hideDuration": "1000",
+        "timeOut": "3000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    toastr[type](text, title);
 }

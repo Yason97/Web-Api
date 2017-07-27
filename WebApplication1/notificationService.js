@@ -1,23 +1,23 @@
 ﻿var module = (function () {
-    var validPriceRegex  = /(?:\d+[,.])?\d+/;
+    var validPriceRegex  = /^(?:\d+[,.])?\d+$/;
     var uri = 'api/product';
 
     var sendForm = function () {
-        var method = $('#select-method').val();
-        switch (method) {
-            case 'POST':
-                postProduct();
-                break;
-            case 'PUT':
-                putProduct();
-                break;
-            case 'GET':
-                findProduct();
-                break;
-            default:
-                throw (method + ' not supported');
-                break;
-        }
+            var method = $('#select-method').val();
+            switch (method) {
+                case 'POST':
+                    postProduct();
+                    break;
+                case 'PUT':
+                    putProduct();
+                    break;
+                case 'GET':
+                    findProduct();
+                    break;
+                default:
+                    throw (method + ' not supported');
+                    break;
+            }
     }
 
     var sendAjax = function (product, method, uri) {
@@ -42,12 +42,11 @@
                         }
                     });
                 });
-                $('#result').text('');
                 disableEnableSubmitButtons(true);
                 return response;
             },
             error: function (jqXHR, textStatus, thrownError) {
-                $('#result').text('Error. ' + thrownError);
+                showToast('error', $.i18n('Error') + '. ' + thrownError);
                 disableEnableSubmitButtons(true);
                 return thrownError;
             }
@@ -55,8 +54,7 @@
     }
 
     var findProduct = function() {
-        disableEnableSubmitButtons(false);
-        var id = $('#get-form input:first').val();
+        var id = $('#get-form input.Id').val();
         if (id !== '') {
             sendAjax('', 'GET', (uri + '/' + id));
         }
@@ -86,7 +84,7 @@
         };
         var price = findInForm(putForm, 'Price').value;
         if (price != '') {
-            if (!validPriceRegex.exec(price)) {
+            if (!price.match(validPriceRegex)) {
                 addRemoveWarning({ element: findInForm(putForm, 'Price'), text: 'invalid_price'}, true );
                 isValid = false;
             }
@@ -120,7 +118,7 @@
         };
         var price = findInForm(postForm, 'Price').value;
         if (price != '') {
-            if (!validPriceRegex.exec(price)) {
+            if (!price.match(validPriceRegex)) {
                 addRemoveWarning({ element: findInForm(postForm, 'Price'), text: 'invalid_price' }, true );
                 isValid = false;
             }

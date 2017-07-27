@@ -1,13 +1,8 @@
 ﻿
 form{
     background-color: #eaeaea;
-    /*max-width: 500px;*/
-    width: 90%;
     position:relative;
     margin-top:10px;
-}
-.hidden{
-    display:none;
 }
 .required:after {
     color: red;
@@ -24,7 +19,11 @@ form{
 
 th {
     max-width: 125px;
-    width: 25%;
+    width: 30%;
+}
+th:first-child{
+    max-width: 125px;
+    width: 10%;
 }
 #data-forms-container form{
     display:none;
@@ -46,4 +45,14 @@ a.disabled {
     opacity: 0.4;
     color: gray !important;
     text-decoration: none !important;
+}
+
+.container {
+    background-color: #fbf9f0;
+    padding-bottom:10px;
+}
+
+form fieldset{
+    padding-left: 10px;
+    padding-top: 5px;
 }

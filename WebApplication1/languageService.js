@@ -29,7 +29,11 @@ jQuery(document).ready(function () {
             'enter_category': 'Enter Category',
             'empty_field': 'Required field is empty',
             'invalid_price': 'Value must be of type number',
-            'title':'Product App',
+            'title': 'Product App',
+            'not supported': 'not supported',
+            'not yet ready': 'Not yet ready',
+            'error': 'error',
+            'Error':'Error',
             'message_from': '$1 has send you $2 {{plural:$2|message|messages}}. {{gender:$3|He|She}} is waiting for your response!'
         },
         'ru': {
@@ -39,7 +43,7 @@ jQuery(document).ready(function () {
             'category': 'Категория',
             'price': 'Цена',
             'method': 'Метод',
-            'get_product': 'Получить Продукт',
+            'get_product': 'Найти Продукт',
             'post_product': 'Новый Продукт',
             'put_product': 'Изменить Товар',
             'submit': 'Подтвердить',
@@ -50,6 +54,10 @@ jQuery(document).ready(function () {
             'empty_field': 'Поле обязательно к заполнению',
             'invalid_price': 'Значение должно быть числом',
             'title': 'Продуктовая компания :)',
+            'not supported': 'не поддерживается',
+            'not yet ready': 'Еще не готово',
+            'error': 'ошибка',
+            'Error': 'Ошибка',
             'message_from': '$1 {{gender:$3|отправил|отправила}} вам $2 {{plural:$2|сообщение|сообщения|сообщений}}. {{gender:$3|Он|Она}} ждет ответа!'
         }
     });
